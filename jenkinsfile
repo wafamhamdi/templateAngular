@@ -1,21 +1,22 @@
 pipeline {
-agent any
-stages {
-  stage("Build Project") {
-      script {
-              bat "npm install"
-              bat "npm run build"
-            }
-   }
-  stage("deploy"){
-     script {
-             bat "<Your deploy command>"
-          }
+    agent {
+        docker {
+      image 'node:8.12.0'
+        }
     }
-}
-post {
-  always{
-     deleteDir()   
-  }
-}
+
+    stages {
+        stage('Install') {
+      steps {
+        sh 'rm -rf node_modules/* && npm cache clean --force'
+        sh 'npm install --production'
+      }
+        }
+
+        stage('Build Project') {
+      steps {
+        sh  '$(npm bin)/ng build --prod --output-path=docker/dist'
+      }
+        }
+    }
 }
