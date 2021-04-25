@@ -1,23 +1,21 @@
 pipeline {
-  agent any
-  stages {
-    stage('Install') {
-      steps { sh 'npm install' }
+agent any
+stages {
+  stage("Build Project") {
+      script {
+              bat "npm install"
+              bat "npm run build"
+            }
+   }
+  stage("deploy"){
+     script {
+             bat "<Your deploy command>"
+          }
     }
-
-    stage('Test') {
-      parallel {
-        stage('Static code analysis') {
-            steps { sh 'npm run-script lint' }
-        }
-        stage('Unit tests') {
-            steps { sh 'npm run-script test' }
-        }
-      }
-    }
-
-    stage('Build') {
-      steps { sh 'npm run-script build' }
-    }
+}
+post {
+  always{
+     deleteDir()   
   }
+}
 }
