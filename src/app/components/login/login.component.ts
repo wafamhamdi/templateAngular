@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
+    this.router.navigateByUrl('/home');
     /* this.authenticationService.authenticate(this.f.username.value, this.f.password.value)*/
 
   }
