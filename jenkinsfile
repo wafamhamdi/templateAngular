@@ -1,17 +1,25 @@
 pipeline {
-    agent any
-    stages {
-        stage('Install') {
-      steps {
-        sh 'rm -rf node_modules/* && npm cache clean --force'
-        sh 'npm install --production'
-      }
-        }
-
-        stage('Build Project') {
-      steps {
-        sh  '$(npm bin)/ng build --prod --output-path=docker/dist'
-      }
-        }
+  agent {
+    docker { image 'node:latest' }
+  }
+  stages {
+    stage('Install') {
+      steps { sh 'npm install' }
     }
+ 
+    stage('Test') {
+      parallel {
+        stage('Static code analysis') {
+            steps { sh 'npm run-script lint' }
+        }
+        stage('Unit tests') {
+            steps { sh 'npm run-script test' }
+        }
+      }
+    }
+ 
+    stage('Build') {
+      steps { sh 'npm run-script build' }
+    }
+  }
 }
