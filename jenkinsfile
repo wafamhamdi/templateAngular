@@ -1,23 +1,29 @@
 pipeline {
-  agent any
-  stages {
-    stage('Install') {
-      steps { sh 'npm install' }
+    agent {
+        docker { image 'node:10-alpine' }
     }
- 
-    stage('Test') {
-      parallel {
-        stage('Static code analysis') {
-            steps { sh 'npm run-script lint' }
-        }
-        stage('Unit tests') {
-            steps { sh 'npm run-script test' }
-        }
+    stages {
+        stage('Restore') {
+      steps {
+        sh 'npm install'
       }
+        }
+        stage('Build') {
+      steps {
+        sh 'npm run-script build'
+      }
+        }
+        stage('Test') {
+      steps {
+        sh 'ng run-script test'
+      }
+        }
+        stage('Deploy') {
+      steps {
+        sh 'rm ../../apps/*'
+        sh 'cp ./dist/apps/* ../../apps/'
+      }
+        }
     }
- 
-    stage('Build') {
-      steps { sh 'npm run-script build' }
-    }
-  }
 }
+
