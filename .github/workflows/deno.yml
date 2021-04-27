@@ -26,7 +26,8 @@ jobs:
           npm install
           npm run build:prod
       - name: Push Build to Releases
-        uses: wafa/release-action@v1
+        uses: wafamhamdi/templateAngular
+
         with:
           artifacts: "dist/templateAngular/*"
           token: ${{ secrets.TOKEN }}
