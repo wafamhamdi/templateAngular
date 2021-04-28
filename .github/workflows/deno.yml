@@ -1,22 +1,23 @@
-name: CI
-on:
-  push:
-    branches: [ master ]
+name: Deploy to GitHub Pages via angular-cli-ghpages
+
+on: [push]
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1 #this will install Node and npm on Ubuntu
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
-    - run: npm install
-    - run: npm install -g @angular/cli > /dev/null
-    - run: ng build --prod --output-path=dist --base-href="https://github.com/wafamhamdi/templateAngular/"
-    - name: Publish generated content to GitHub Pages
-      uses: wafamhamdi/templateAngular@master
-      with:
-          dir: dist
-          branch: master
-          token: ${{ secrets.token }}
+        node-version: 12.x
+
+    - name: Prepare and deploy
+      env:
+       token: ${{ secrets.token }}
+      run: |
+        npm install
+        npm run ng -- deploy --base-href=/templateAngular/ --name="wafamhamdi" --email=wafa.mhamdi.jamel@gmail.com
