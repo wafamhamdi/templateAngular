@@ -1,4 +1,6 @@
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=wafamhamdi_templateAngular)
+
+[![CI/CD](https://github.com/wafamhamdi/templateAngular/actions/workflows/deno.yml/badge.svg)](https://github.com/wafamhamdi/templateAngular/actions/workflows/deno.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wafamhamdi_templateAngular&metric=alert_status)](https://sonarcloud.io/dashboard?id=wafamhamdi_templateAngular)
 
 # TemplateAngular
 
