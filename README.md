@@ -3,6 +3,14 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wafamhamdi_templateAngular&metric=alert_status)](https://sonarcloud.io/dashboard?id=wafamhamdi_templateAngular)
 
 # TemplateAngular
+This project is a simple Angular template which is about giving the acces to the user to log in and display a Todo list.
+
+You can add other domain scenarios or other frameworks, if you want to experiment new ideas, here is something todo if you want:
+
+TODO:
+
+Create Docker Image
+build with Github Action
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
 
@@ -26,6 +34,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

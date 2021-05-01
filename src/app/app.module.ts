@@ -6,19 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { TodolistComponent } from './components/todolist/todolist.component';
+import { LoginComponent } from './components/login/login.component'; import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     HomeComponent,
-    LoginComponent,
-    TodolistComponent
-  
+    LoginComponent
+
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
