@@ -5,8 +5,4 @@ import { AuthenticationService } from './authenticationService.service';
 describe('AuthenticationService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: AuthenticationService = TestBed.get(AuthenticationService);
-    expect(service).toBeTruthy();
-  });
 });
