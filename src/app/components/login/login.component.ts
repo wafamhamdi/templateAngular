@@ -19,16 +19,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern('[^ @]*@[^ @]*')]],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(2)]]
     });
   }
+  
+  get f() { return this.loginForm.controls; }
 
   // convenience getter for easy access to form fields
   get field() { return this.loginForm.controls; }
 
   onSubmit() {
+
+      this.submitted = true;
+      if (this.loginForm.invalid) {
+        return;
+    }
     this.router.navigateByUrl('/home');
-    this.submitted = true;
+   
   }
 }
